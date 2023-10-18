@@ -61,7 +61,7 @@ jobs:
         if: env.exists == 'false'
         run: |
           git config --global url.https://github.com/.insteadOf git://github.com/
-          git clone https://github.com/hoytech/strfry.git --single-branch --branch ${{ steps.prepare.outputs.version }}
+          git clone --recurse-submodules -j8 https://github.com/hoytech/strfry.git --single-branch --branch ${{ steps.prepare.outputs.version }}
           cp Dockerfile strfry/
           cp .dockerignore strfry/
           cp strfry.sh strfry/
