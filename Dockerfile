@@ -46,7 +46,7 @@ RUN \
     zstd \
     libressl \
     bash \
-    wget \
+    curl \
     python3 \
   && rm -rf /var/cache/apk/*
 
@@ -64,9 +64,7 @@ LABEL org.opencontainers.image.source="https://github.com/dockur/strfry/"
 LABEL org.opencontainers.image.url="https://hub.docker.com/r/dockurr/strfry/"
 LABEL org.opencontainers.image.description="Nostr relay server"
 
-HEALTHCHECK --interval=60s --retries=2 --timeout=10s CMD wget -nv -t1 --spider 'http://localhost:7777/' || exit 1
-
-ENV STREAMS ""
+HEALTHCHECK --interval=60s --retries=2 --timeout=10s CMD curl -ILfSs http://localhost:7777/ > /dev/null || exit 1
 
 COPY strfry.sh /app/strfry.sh
 COPY strfry.conf /etc/strfry.conf.default
