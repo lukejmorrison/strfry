@@ -1,6 +1,6 @@
 <h1 align="center">strfry-docker<br />
 <div align="center">
-<img src="https://raw.githubusercontent.com/dockur/strfry/master/docs/strfry.svg" title="Logo" style="max-width:100%;" width="128" />
+<img src="https://raw.githubusercontent.com/dockur/strfry/master/.github/logo.svg" title="Logo" style="max-width:100%;" width="128" />
 </div>
 <div align="center">
   
