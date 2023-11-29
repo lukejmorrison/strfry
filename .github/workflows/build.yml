@@ -23,7 +23,7 @@ jobs:
         id: latest_tag
         with:
           variables: |
-            repo: strfry
+            repo: ${{ github.event.repository.name }}
             owner: hoytech
           query: |
             query tag($owner: String!, $repo: String!) {
@@ -101,19 +101,19 @@ jobs:
         if: env.exists == 'false'
         run: |
           git config --global url.https://github.com/.insteadOf git://github.com/
-          git clone --recurse-submodules -j8 https://github.com/hoytech/strfry.git --single-branch --branch ${{ env.latest_tag }}
-          cp Dockerfile strfry/
-          cp .dockerignore strfry/
-          cp strfry.sh strfry/
-          cp strfry.conf strfry/
-          cp write-policy.py strfry/
-          cp strfry-router.conf strfry/
+          git clone --recurse-submodules -j8 https://github.com/hoytech/${{ github.event.repository.name }}.git --single-branch --branch ${{ env.latest_tag }}
+          cp Dockerfile ${{ github.event.repository.name }}/
+          cp .dockerignore ${{ github.event.repository.name }}/
+          cp strfry.sh ${{ github.event.repository.name }}/
+          cp strfry.conf ${{ github.event.repository.name }}/
+          cp write-policy.py ${{ github.event.repository.name }}/
+          cp strfry-router.conf ${{ github.event.repository.name }}/
       -
         name: Build Docker image
         if: env.exists == 'false'
         uses: docker/build-push-action@v5
         with:
-          context: ./strfry
+          context: ./${{ github.event.repository.name }}
           push: true
           provenance: false
           platforms: linux/amd64,linux/arm64
