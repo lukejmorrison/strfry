@@ -50,12 +50,6 @@ RUN \
     python3 \
   && rm -rf /var/cache/apk/*
 
-ARG VERSION_ARG=0
-ENV VERSION=$VERSION_ARG
-
-LABEL org.opencontainers.image.title="Strfry"
-LABEL org.opencontainers.image.description="Nostr relay server"
-
 HEALTHCHECK --interval=60s --retries=2 --timeout=10s CMD curl -ILfSs http://localhost:7777/ > /dev/null || exit 1
 
 COPY strfry.sh /app/strfry.sh
