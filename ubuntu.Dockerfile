@@ -26,12 +26,6 @@ RUN apt-get update && apt-get -y upgrade && \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ARG VERSION_ARG=0
-ENV VERSION=$VERSION_ARG
-
-LABEL org.opencontainers.image.title="Strfry"
-LABEL org.opencontainers.image.description="Nostr relay server"
-
 HEALTHCHECK --interval=60s --retries=2 --timeout=10s CMD wget -nv -t1 --spider 'http://localhost:7777/' || exit 1
 
 ENV STREAMS ""
