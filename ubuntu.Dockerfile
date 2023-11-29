@@ -25,19 +25,11 @@ RUN apt-get update && apt-get -y upgrade && \
     liblmdb0 libflatbuffers1 libsecp256k1-0 libb2-1 libzstd1 wget python3 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-    
-ARG DATE_ARG=""
-ARG BUILD_ARG=0
+
 ARG VERSION_ARG=0
 ENV VERSION=$VERSION_ARG
 
 LABEL org.opencontainers.image.title="Strfry"
-LABEL org.opencontainers.image.licenses="GPL-3.0"
-LABEL org.opencontainers.image.created=${DATE_ARG}
-LABEL org.opencontainers.image.revision=${BUILD_ARG}
-LABEL org.opencontainers.image.version=${VERSION_ARG}
-LABEL org.opencontainers.image.source="https://github.com/dockur/strfry/"
-LABEL org.opencontainers.image.url="https://hub.docker.com/r/dockurr/strfry/"
 LABEL org.opencontainers.image.description="Nostr relay server"
 
 HEALTHCHECK --interval=60s --retries=2 --timeout=10s CMD wget -nv -t1 --spider 'http://localhost:7777/' || exit 1
