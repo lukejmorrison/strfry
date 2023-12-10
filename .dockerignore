@@ -8,7 +8,8 @@ Dockerfile.archive
 ubuntu.Dockerfile
 docker-compose.yml
 sample-docker-compose.yml
-  
+renovate.json
+
 *.md
 docs
 test
