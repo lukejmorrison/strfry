@@ -1,6 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended", ":disableDependencyDashboard"],
-  "includeForks": true,
-  "forkProcessing": "enabled"
+  "forkProcessing": "enabled",
+  "docker-compose": {
+    "enabled": false
+  }  
 }
