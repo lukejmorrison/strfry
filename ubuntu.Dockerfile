@@ -1,5 +1,5 @@
 FROM ubuntu:jammy as build
-ENV TZ=Europe/Amsterdam
+
 WORKDIR /build
 
 ARG DEBCONF_NOWARNINGS="yes"
@@ -15,6 +15,7 @@ RUN apt-get update && apt-get -y upgrade && \
 COPY . .
 RUN git submodule update --init
 RUN make setup-golpe
+RUN make clean
 RUN make -j4
 
 FROM ubuntu:jammy as runner
@@ -22,13 +23,11 @@ WORKDIR /app
 
 RUN apt-get update && apt-get -y upgrade && \
     apt-get --no-install-recommends -y install \
-    liblmdb0 libflatbuffers1 libsecp256k1-0 libb2-1 libzstd1 wget python3 \
+    liblmdb0 libflatbuffers1 libsecp256k1-0 libb2-1 libzstd1 curl python3 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-HEALTHCHECK --interval=60s --retries=2 --timeout=10s CMD wget -nv -t1 --spider 'http://localhost:7777/' || exit 1
-
-ENV STREAMS ""
+HEALTHCHECK --interval=60s --retries=2 --timeout=10s CMD curl -ILfSs http://localhost:7777/ > /dev/null || exit 1
 
 COPY strfry.sh /app/strfry.sh
 COPY strfry.conf /etc/strfry.conf.default
@@ -39,4 +38,7 @@ RUN chmod +x /app/strfry.sh
 RUN chmod +x /app/write-policy.py
 
 COPY --from=build /build/strfry strfry
+
+EXPOSE 7777
+
 CMD ["/app/strfry.sh"]
