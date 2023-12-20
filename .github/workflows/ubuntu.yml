@@ -1,6 +1,6 @@
 name: ubuntu
 
-on: [workflow_dispatch]
+on: [push, pull_request]
 
 jobs:
   ubuntu:
@@ -44,4 +44,3 @@ jobs:
         run: |
           cat /etc/os-release
           sudo ./strfry relay &
-
