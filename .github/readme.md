@@ -22,7 +22,7 @@ version: "3"
 services:
   strfry:
     container_name: strfry
-    image: dockurr/strfry:latest
+    image: dockurr/strfry
     ports:
         - 7777:7777
     volumes:
