@@ -30,6 +30,9 @@ services:
         - /path/to/strfry.conf:/etc/strfry.conf
 ```
 
+## Stars
+[![Stars](https://starchart.cc/dockur/strfry.svg?variant=adaptive)](https://starchart.cc/dockur/strfry)
+
 [build_url]: https://github.com/dockur/strfry/
 [hub_url]: https://hub.docker.com/r/dockurr/strfry/
 [tag_url]: https://hub.docker.com/r/dockurr/strfry/tags
