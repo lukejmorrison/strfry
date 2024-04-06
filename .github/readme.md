@@ -15,7 +15,7 @@ Docker image of [strfry](https://github.com/hoytech/strfry), a relay for the [no
 
 ## How to use
 
-Via `docker-compose`
+Via Docker Compose:
 
 ```yaml
 version: "3"
