@@ -18,7 +18,6 @@ Docker image of [strfry](https://github.com/hoytech/strfry), a relay for the [no
 Via Docker Compose:
 
 ```yaml
-version: "3"
 services:
   strfry:
     container_name: strfry
