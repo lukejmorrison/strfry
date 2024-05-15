@@ -1,4 +1,3 @@
-version: "3"
 services:
   strfry:
     container_name: strfry
