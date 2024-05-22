@@ -25,8 +25,14 @@ services:
     ports:
         - 7777:7777
     volumes:
-        - /path/to/strfry-db:/app/strfry-db
-        - /path/to/strfry.conf:/etc/strfry.conf
+        - ./strfry-db:/app/strfry-db
+        - ./strfry.conf:/etc/strfry.conf
+```
+
+Via Docker CLI:
+
+```bash
+docker run -it --rm -p 7777:7777 -v " ./strfry.conf:/etc/strfry.conf" dockurr/strfry
 ```
 
 ## Stars
