@@ -13,7 +13,7 @@
 
 Docker image of [strfry](https://github.com/hoytech/strfry), a relay for the [nostr](https://github.com/nostr-protocol/nostr) protocol.
 
-## How to use
+## Usage  🐳
 
 Via Docker Compose:
 
@@ -35,7 +35,7 @@ Via Docker CLI:
 docker run -it --rm -p 7777:7777 -v " ./strfry.conf:/etc/strfry.conf" dockurr/strfry
 ```
 
-## Stars
+## Stars 🌟
 [![Stars](https://starchart.cc/dockur/strfry.svg?variant=adaptive)](https://starchart.cc/dockur/strfry)
 
 [build_url]: https://github.com/dockur/strfry/
