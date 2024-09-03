@@ -48,5 +48,4 @@ docker run -it --rm -p 7777:7777 -v " ./strfry.conf:/etc/strfry.conf" dockurr/st
 [Size]: https://img.shields.io/docker/image-size/dockurr/strfry/latest?color=066da5&label=size
 [Pulls]: https://img.shields.io/docker/pulls/dockurr/strfry.svg?style=flat&label=pulls&logo=docker
 [Version]: https://img.shields.io/docker/v/dockurr/strfry/latest?arch=amd64&sort=semver&color=066da5
-[Package]: 
-https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fipitio.github.io%2Fbackage%2Fdockur%2Fstrfry%2Fstrfry.json&query=%24.downloads&logo=github&style=flat&color=066da5&label=pulls
+[Package]: https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fipitio.github.io%2Fbackage%2Fdockur%2Fstrfry%2Fstrfry.json&query=%24.downloads&logo=github&style=flat&color=066da5&label=pulls
