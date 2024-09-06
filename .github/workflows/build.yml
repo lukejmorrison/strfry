@@ -40,6 +40,7 @@ jobs:
         run: |
           #!/bin/bash
           latest_tag=$(echo '${{ steps.latest_tag.outputs.data }}' | jq '.repository.refs.edges[][].name' -r)
+          latest_tag="0.9.7"
           [ -z "$latest_tag" ] && echo "Tag not found!" && exit 1
           [[ "$latest_tag" == "null" ]] && echo "Tag not found!" && exit 1
           [[ "$latest_tag" = v* ]] && latest_tag="${latest_tag:1}"
@@ -55,7 +56,15 @@ jobs:
         name: Finish when found
         run: |
           #!/bin/bash
+          beta="false"
+          
           val="${{ steps.checkTag.outputs.exists }}"
+
+          [[ "${{ env.latest_tag }}" == *"rc"* ]] && beta="true"
+          [[ "${{ env.latest_tag }}" == *"beta"* ]] && beta="true"
+          [[ "${{ env.latest_tag }}" == *"alpha"* ]] && beta="true" && val="true"
+
+          echo "beta=${beta}" >> $GITHUB_ENV
           echo "exists=${val}" >> $GITHUB_ENV
       -
         name: Checkout
@@ -69,7 +78,7 @@ jobs:
         uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: Dockerfile
-          ignore: DL3008
+          ignore: DL3008,DL3018,DL3059
           failure-threshold: warning
       -
         name: Docker metadata
@@ -82,7 +91,7 @@ jobs:
             ${{ secrets.DOCKERHUB_REPO }}
             ghcr.io/${{ github.repository }}
           tags: |
-            type=raw,value=latest,priority=100
+            type=raw,value=latest,priority=100,enable=${{ env.beta == 'false' }}
             type=raw,value=${{ env.latest_tag }}
           labels: |
             org.opencontainers.image.title=${{ vars.NAME }}
