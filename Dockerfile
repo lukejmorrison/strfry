@@ -1,4 +1,4 @@
-FROM alpine:3.19 AS build
+FROM alpine:3.18.3 AS build
 
 WORKDIR /build
 
@@ -23,10 +23,9 @@ RUN \
   && rm -rf /var/cache/apk/* \
   && git submodule update --init \
   && make setup-golpe \
-  && make clean \
   && make -j4
 
-FROM alpine:3.19
+FROM alpine:3.18.3
 
 WORKDIR /app
 
