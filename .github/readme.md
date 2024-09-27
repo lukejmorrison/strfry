@@ -16,9 +16,26 @@ Docker image of [strfry](https://github.com/hoytech/strfry), a relay for the [no
 
 ## Usage  🐳
 
-Via Docker Compose:
+Via Synology DiskStation Manager (DSM) Container Manager (Synology's Docker Compose Container Manager):
 
 ```yaml
+version: '3.8'
+
+services:
+  strfry:
+    container_name: strfry
+    image: "dockurr/strfry"
+    ports:
+      - "7777:7777"
+    volumes:
+      - "./volume1/docker/strfry-docker/strfry-db:/app/strfry-db"
+      - "./volume1/docker/strfry-docker/strfry.conf:/etc/strfry.conf"
+```
+Docker Compose:
+
+```yaml
+
+
 services:
   strfry:
     container_name: strfry
